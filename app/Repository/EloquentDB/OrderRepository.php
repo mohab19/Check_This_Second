@@ -32,7 +32,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     */
 	public function where(string $identifier, int $id)
 	{
-		return $this->model->where($identifier, $id)->get();
+		return $this->model->where($identifier, $id)->first();
 	}
 
     /**

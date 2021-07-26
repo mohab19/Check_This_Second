@@ -20,7 +20,7 @@ class OrderService
 	/**
     * @return Json collection
     */
-	public function ListOrders()
+	public function ListOrders() : string
     {
         $orders = $this->orderRepository->all();
 
@@ -30,7 +30,7 @@ class OrderService
 	/**
     * @return Json entity
     */
-	public function getOrder(int $id)
+	public function getOrder(int $id) : string
     {
         $order = $this->orderRepository->where('id', $id);
 
@@ -40,7 +40,7 @@ class OrderService
 	/**
     * @return Json response
     */
-	public function createOrder(array $order = [])
+	public function createOrder(array $order = [])  : string
 	{
         //do some pdf work to create invoice
         $order['code'] 	  = rand(10000000, 99999999);
@@ -67,7 +67,7 @@ class OrderService
 	/**
     * @return Json collection
     */
-	public function ExportOrder(array $orders)
+	public function ExportOrder(array $orders) : string
 	{
 		$orders_updated = [];
         foreach ($orders as $key => $id) {

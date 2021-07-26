@@ -11,6 +11,14 @@
   You should find a **Postman** collection json file included in the project's
   root folder.
 
+### Project Scope:
+
+  This project uses multiple *Design Patterns* one of them is **Repository Pattern**
+  to avoid breaking the **SOLID Principles** and to maintain the **Singularity**.
+  
+  Also it uses the **Strategy Pattern** to maintain easy and approachable way to
+  add new Shipment companies without editing the *Orders Controller*.  
+
 ### How to setup the project:
 
   Please clone the project to your PC and then open a *CMD* inside the root folder
