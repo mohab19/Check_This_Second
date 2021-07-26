@@ -24,6 +24,10 @@
     **Accepts: application\json**
   to the request header.  
 
+  The project supposed to be using **Redis** for queues work that exports orders.
+  but all the needed DB tables for the jobs are migrated, so you need to change .env
+  file to use database queue connection.
+
 ### How to setup the project:
 
   Please clone the project to your PC and then open a *CMD* inside the root folder
