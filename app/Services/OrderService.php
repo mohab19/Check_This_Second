@@ -72,7 +72,6 @@ class OrderService
 		$orders_updated = [];
         foreach ($orders as $key => $id) {
             $order = $this->orderRepository->find($id);
-			print_r($order);exit;
             ExportOrder::dispatch($order)->delay(5);
             updateOrder::dispatch($order)->delay(60);
             $orders_updated[] = $this->orderRepository->find($id);
