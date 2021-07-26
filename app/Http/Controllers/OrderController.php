@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use function Illuminate\Events\queueable;
 use App\Http\Requests\OrderRequest;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
-use App\Events\OrderCreated;
-use App\Jobs\ExportOrder;
-use App\Jobs\UpdateOrder;
-use App\Models\Order;
 
 class OrderController extends Controller
 {
+    protected $orderService;
+
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +22,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all()->toJson();
-
-        return $orders;
+        return $this->orderService->ListOrders();
     }
 
     /**
@@ -42,27 +43,8 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
-        $order = Order::create($request->input());
-        //do some pdf work to create invoice
-        $order_code = rand(10000000, 99999999);
-        $order->update([
-            'code'    => $order_code,
-            'invoice' => $order_code.'.pdf', //for example
-        ]);
-
-        $event = OrderCreated::dispatch($order);
-
-        if($event) {
-            return response()->json([
-                'status'  => 200,
-                'message' => 'Order registered Successfuly'
-            ]);
-        } else {
-            return response()->json([
-                'status'  => 400,
-                'message' => 'Order registeration Faild'
-            ]);
-        }
+        $order = $request->input();
+        return $this->orderService->createOrder($order);
     }
 
     /**
@@ -118,15 +100,7 @@ class OrderController extends Controller
      */
     public function export(Request $request)
     {
-        $orders = [];
-        foreach ($request->orders as $key => $id) {
-            $order = Order::find($id);
-            ExportOrder::dispatch($order)->delay(10);
-            updateOrder::dispatch($order)->delay(65);
-            $orders[] = Order::find($id);
-        }
-
-        return json_encode($orders);
+        return $this->orderService->ExportOrder($request->orders);
     }
 
 }

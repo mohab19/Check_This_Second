@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\Companies\AyMakanCompany;
 use Illuminate\Support\ServiceProvider;
+use App\Services\ShipCompanyStrategy;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(ShipCompanyStrategy::class, AyMakanCompany::class);
     }
 
     /**

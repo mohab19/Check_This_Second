@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Companies;
+namespace App\Services\Companies;
 
-use App\Services\ShipCompanyInterface;
+use App\Services\ShipCompanyStrategy;
 use App\Models\Order;
 
-class AyMakanCompany implements ShipCompanyInterface
+class AyMakanCompany implements ShipCompanyStrategy
 {
 
     public function register_shipment($order)
@@ -20,9 +20,8 @@ class AyMakanCompany implements ShipCompanyInterface
         return true;
     }
 
-    public function update_shipment($order_code)
+    public function update_shipment($order)
     {
-        $order = Order::where('code', $order_code)->first();
         // request status update on an order
         logger("Order " . $order->id . " shipment status updated!");
         $new_status = $order->status_id + 1;

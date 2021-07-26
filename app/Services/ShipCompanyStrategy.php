@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Order;
 
-interface ShipCompanyInterface {
+interface ShipCompanyStrategy {
 
     /**
      * Register order shipment with curl request
@@ -18,6 +18,6 @@ interface ShipCompanyInterface {
      *
      * @return Bolean
      */
-    public function update_shipment($order_code);
+    public function update_shipment(Order $order);
 
 }

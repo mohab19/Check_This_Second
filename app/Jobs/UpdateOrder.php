@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Http\Controllers\Companies\AyMakanCompany;
+use App\Services\ShipCompanyStrategy;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -33,7 +33,7 @@ class UpdateOrder implements ShouldQueue
      */
     public function handle()
     {
-        $company = new AyMakanCompany();
+        $company = new ShipCompanyStrategy();
 
         $company->update_shipment($this->order);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Http\Controllers\Companies\AyMakanCompany;
+use App\Services\ShipCompanyStrategy;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Events\OrderCreated;
@@ -43,7 +43,7 @@ class RegisterShipment implements ShouldQueue
      */
     public function handle(OrderCreated $event)
     {
-        $company = new AyMakanCompany();
+        $company = new ShipCompanyStrategy();
 
         $company->register_shipment($event->order);
     }
