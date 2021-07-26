@@ -15,9 +15,14 @@
 
   This project uses multiple *Design Patterns* one of them is **Repository Pattern**
   to avoid breaking the **SOLID Principles** and to maintain the **Singularity**.
-  
+
   Also it uses the **Strategy Pattern** to maintain easy and approachable way to
-  add new Shipment companies without editing the *Orders Controller*.  
+  add new Shipment companies without editing the *Orders Controller*.
+
+  There's also a good error handling that has been added for the json requests,
+  Please make your *Postman request* always accepts json by adding:
+    **Accepts: application\json**
+  to the request header.  
 
 ### How to setup the project:
 
