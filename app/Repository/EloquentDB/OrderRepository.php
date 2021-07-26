@@ -35,4 +35,14 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 		return $this->model->where($identifier, $id)->get();
 	}
 
+    /**
+    * @return boolean
+    */
+	public function update(int $id, string $key, string $value)
+	{
+		return $this->model->where('id', $id)->update([
+            $key => $value,
+        ]);
+	}
+
 }

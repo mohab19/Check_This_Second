@@ -4,9 +4,9 @@ namespace App\Services;
 
 use App\Repository\OrderRepositoryInterface;
 use function Illuminate\Events\queueable;
-use App\Events\OrderCreated;
 use App\Jobs\ExportOrder;
 use App\Jobs\UpdateOrder;
+
 class OrderService
 {
 
@@ -30,7 +30,7 @@ class OrderService
 	/**
     * @return Json entity
     */
-	public function getOrder($id)
+	public function getOrder(int $id)
     {
         $order = $this->orderRepository->where('id', $id);
 
@@ -40,7 +40,7 @@ class OrderService
 	/**
     * @return Json response
     */
-	public function createOrder($order = [])
+	public function createOrder(array $order = [])
 	{
         //do some pdf work to create invoice
         $order['code'] 	  = rand(10000000, 99999999);

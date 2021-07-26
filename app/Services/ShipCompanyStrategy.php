@@ -11,13 +11,13 @@ interface ShipCompanyStrategy {
      *
      * @return Bolean
      */
-    public function register_shipment(Order $order);
+    public function register_shipment(Order $order) : bool;
 
     /**
      * Retreive shipment status with curl request
      *
      * @return Bolean
      */
-    public function update_shipment(Order $order);
+    public function update_shipment(Order $order) : bool;
 
 }
