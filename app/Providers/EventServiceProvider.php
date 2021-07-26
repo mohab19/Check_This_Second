@@ -8,6 +8,7 @@ use function Illuminate\Events\queueable;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Event;
 use App\Listeners\RegisterShipment;
+use App\Listeners\UpdateShipment;
 use App\Events\OrderCreated;
 
 class EventServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderCreated::class => [
             RegisterShipment::class,
+            UpdateShipment::class,
         ],
     ];
 

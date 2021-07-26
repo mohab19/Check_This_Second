@@ -20,7 +20,7 @@ class AyMakanCompany implements ShipCompanyInterface
         return true;
     }
 
-    public function follow_shipment($order_code)
+    public function update_shipment($order_code)
     {
         $order = Order::where('code', $order_code)->first();
         // request status update on an order

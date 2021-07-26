@@ -6,6 +6,8 @@ use function Illuminate\Events\queueable;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use App\Events\OrderCreated;
+use App\Jobs\ExportOrder;
+use App\Jobs\UpdateOrder;
 use App\Models\Order;
 
 class OrderController extends Controller
@@ -49,6 +51,7 @@ class OrderController extends Controller
         ]);
 
         $event = OrderCreated::dispatch($order);
+
         if($event) {
             return response()->json([
                 'status'  => 200,
@@ -115,13 +118,15 @@ class OrderController extends Controller
      */
     public function export(Request $request)
     {
-        $events = [];
+        $orders = [];
         foreach ($request->orders as $key => $id) {
             $order = Order::find($id);
-            $events[] = OrderCreated::dispatch($order);
+            ExportOrder::dispatch($order)->delay(10);
+            updateOrder::dispatch($order)->delay(65);
+            $orders[] = Order::find($id);
         }
 
-        print_r($events);
+        return json_encode($orders);
     }
 
 }

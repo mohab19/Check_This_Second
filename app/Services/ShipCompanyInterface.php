@@ -18,6 +18,6 @@ interface ShipCompanyInterface {
      *
      * @return Bolean
      */
-    public function follow_shipment($order_code);
+    public function update_shipment($order_code);
 
 }

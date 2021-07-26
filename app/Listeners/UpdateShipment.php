@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Events\OrderCreated;
 
-class RegisterShipment implements ShouldQueue
+class UpdateShipment implements ShouldQueue
 {
     use InteractsWithQueue;
 
@@ -23,7 +23,7 @@ class RegisterShipment implements ShouldQueue
      *
      * @var int
      */
-    public $delay = 5;
+    public $delay = 60;
 
     /**
      * Create the event listener.
@@ -45,6 +45,6 @@ class RegisterShipment implements ShouldQueue
     {
         $company = new AyMakanCompany();
 
-        $company->register_shipment($event->order);
+        $company->update_shipment($event->order->code);
     }
 }
