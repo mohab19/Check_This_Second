@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ShipCompanyStrategy::class, AyMakanCompany::class);
+        $this->app->bind(ShipCompanyStrategy::class, function() {
+            return new AyMakanCompany();
+        });
     }
 
     /**

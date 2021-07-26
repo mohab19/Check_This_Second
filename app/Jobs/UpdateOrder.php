@@ -31,10 +31,8 @@ class UpdateOrder implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(ShipCompanyStrategy $company)
     {
-        $company = new ShipCompanyStrategy();
-
         $company->update_shipment($this->order);
     }
 }

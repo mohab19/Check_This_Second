@@ -48,9 +48,10 @@ class OrderService
 
 		$order = $this->orderRepository->create($order);
 
-        $event = OrderCreated::dispatch($order);
+		ExportOrder::dispatch($order)->delay(5);
+		updateOrder::dispatch($order)->delay(60);
 
-        if($event) {
+        if($order) {
             return response()->json([
                 'status'  => 200,
                 'message' => 'Order registered Successfuly'

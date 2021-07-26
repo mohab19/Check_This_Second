@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
-use App\Services\ShipCompanyStrategy;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Services\ShipCompanyStrategy;
 use Illuminate\Bus\Queueable;
 
 class ExportOrder implements ShouldQueue
@@ -31,10 +31,8 @@ class ExportOrder implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(ShipCompanyStrategy $company)
     {
-        $company = new ShipCompanyStrategy();
-
         $company->register_shipment($this->order);
     }
 }

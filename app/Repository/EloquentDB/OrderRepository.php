@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Eloquent;
+namespace App\Repository\EloquentDB;
 
 use App\Repository\OrderRepositoryInterface;
 use Illuminate\Support\Collection;
